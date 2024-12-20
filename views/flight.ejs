@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Booking System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="flight.css">
+    <script src="flight.js" defer></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand">
+        <div class="container-fluid">
+          <div class="containers-fluid">
+            <a class="navbar-brand" href="/home">
+                <img src="images/final-removebg-preview.png" alt="Wing Aero Logo" id="pngg">
+            </a>
+          </div>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#destinations">Destinations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#hero">Deals</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#testimonials">Testimonials</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#FAQ">ABOUT US</a>
+                    </li>
+                </ul>
+            </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                    </li>
+                </ul>
+            </div>
+          
+            <div class="login-signup">
+                <span class="icon">
+                    <img src="./images/profile.png" alt="User Icon">
+                </span>
+                <span class="text">
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Log in</a> | 
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#registerModal">Sign up</a>
+                </span>
+            </div>
+        </div>
+    </nav>
+
+
+
+         <!-- LOGIN -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="loginModalLabel">Login</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <div id="loginError" class="alert alert-danger d-none" role="alert"></div>
+              <form id="loginForm" method="POST" onsubmit="handleLogin(event)">
+                  <div class="mb-3">
+                      <label for="loginEmail" class="form-label">Email</label>
+                      <input type="email" class="form-control" id="loginEmail" name="email" required>
+                  </div>
+                  <div class="mb-3">
+                      <label for="loginPassword" class="form-label">Password</label>
+                      <input type="password" class="form-control" id="loginPassword" name="password" required>
+                  </div><button type="submit" class="btn btn-primary">Login</button>
+                  <p id="messages">Don't have an account? 
+                    <a href="#" class="learn-more-link" data-bs-toggle="modal" data-bs-target="#registerModal">Sign up</a>
+                </p>
+               
+                  
+                
+                  
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+           <!-- SIGN-UP -->
+<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="registerModalLabel">Sign Up</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="registerError" class="alert alert-danger d-none" role="alert"></div>
+                <form id="registerForm" method="POST" action="/register">
+                    <div class="mb-3">
+                        <label for="registerFullName" class="form-label">Full Name</label>
+                        <input type="text" class="form-control" id="registerFullName" name="fullName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="registerLastName" class="form-label">Last Name</label>
+                        <input type="text" class="form-control" id="registerLastName" name="lastName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="registerUserName" class="form-label">User Name</label>
+                        <input type="text" class="form-control" id="registerUserName" name="userName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="registerContact" class="form-label">Contact</label>
+                        <input type="text" class="form-control" id="registerContact" name="contact" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="registerEmail" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="registerEmail" name="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="registerPassword" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="registerPassword" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Sign Up</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+    
+<section class="hero">
+  <div class="overlay">
+    <div class="write">
+      <h1>Fly with Wing Aero</h1>
+      <p>Your next adventure awaits!</p>
+    </div>
+     <div class="search-bar">
+    <div class="input-container">
+        <input type="text" id="destination" class="input-field" placeholder="Where do you want to go?">
+        <button class="search-btn" id="search-btn">
+            <img src="images/search.png" alt="Search">
+        </button>
+    </div>
+</div>
+
+  </div>
+</section>
+
+
+
+    <section id="destinations" class="destinations">
+        <h2>Popular Destinations</h2>
+        <div class="destination-cards">
+            
+            <div class="card">
+                <img src="images/Paris.jpeg" alt="Paris">
+                <div class="card-info">
+                    <h3>Paris</h3>
+                    <p>From $499</p>
+                    <a href="/about">
+                        <button class="deal-btn">Learn More</button>
+                    </a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="images/new yk.jpg" alt="New York">
+                <div class="card-info">
+                    <h3>New York</h3>
+                    <p>From $399</p>
+                    <a href="/aboutes">
+                        <button class="deal-btn">Learn More</button>
+                    </a>
+                </div>
+
+            </div>
+            <div class="card">
+                <img src="images/Tokyo.jpg" alt="Tokyo">
+                <div class="card-info">
+                    <h3>Tokyo</h3>
+                    <p>From $699</p>
+                    <a href="/abouts">
+                        <button class="deal-btn">Learn More</button>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="hero">
+    <div class="hero-section">
+        <div class="content">
+          <p class="subtitle">WING's AERO</p>
+          <h1 class="main-heading">A season of bonus Miles</h1>
+          <p class="description">
+            Shop, dine and travel with wing's aero this season and enjoy incredible bonus Miles offers.
+          </p>
+          <a href="/deal" class="learn-more-link">
+            <button class="learn-more">Learn more</button>
+        </a>
+        
+        </div>
+      </div>
+    </section>
+    
+    <section id="testimonials">
+    <div class="texts">
+        <h1>Make it an incredible journey</h1>
+        <a>Explore the Emirates experience and plan an unforgettable trip beyond your flight.</a>
+    </div>
+  <div class="experience-section">
+    <div class="image-container">
+      <img src="images/dubaipg.jpg" alt="Dubai Skyline" class="experience-image">
+      <div class="text-overlay">
+        <h4>Dubai Experience</h4>
+        <h1>Create Your Dubai Experience</h1>
+        <span class="learn-more-text">Learn More</span>
+      </div>
+    </div>
+    
+    <div class="features-grid">
+      <div class="card" style="background-image: url('images/images.jpg');">
+        <div class="card-content">
+          <h5>Cabin Features</h5>
+          <h2>First Class</h2>
+          <span class="learn-more-text">Learn More</span>
+        </div>
+      </div>
+      <div class="card" style="background-image: url('images/business-class-meal-w800x600.jpg');">
+        <div class="card-content">
+          <h5>Cabin Features</h5>
+          <h2>Business Class</h2>
+          <span class="learn-more-text">Learn More</span>
+        </div>
+      </div>
+      <div class="card" style="background-image: url('images/foody.png');">
+        <div class="card-content">
+          <h5>Cabin Features</h5>
+          <h2 >Premium Economy</h2>
+          <span class="learn-more-text">Learn More</span>
+        </div>
+      </div>
+      <div class="card" style="background-image: url('images/images (2).jpg');">
+        <div class="card-content">
+          <h5>Cabin Features</h5>
+          <h2>Economy Class</h2>
+          <span class="learn-more-text">Learn More</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="FAQ">
+  <div class="container" id="conn">
+    <h1>About Us</h1>
+    <p class="description">Learn more about our history, our business, and sustainability initiatives</p>
+
+    <div class="about-us">
+        <div>
+            <img src="images/aaaaaaa.jpg" alt="Our Business">
+            <h3>Our Business</h3>
+            <p>Discover our operations and how we drive success.</p>
+        </div>
+        <div>
+            <img src="images/images (3).jpg" alt="Our Planet">
+            <h3>Our Planet</h3>
+            <p>Explore our efforts toward environmental sustainability.</p>
+        </div>
+        <div>
+            <img src="images/download.jpg" alt="Our People">
+            <h3>Our People</h3>
+            <p>Meet our dedicated and diverse team.</p>
+        </div>
+        <div>
+            <img src="images/download (1).jpg" alt="Our Communities">
+            <h3>Our Communities</h3>
+            <p>See the impact we have on the communities we serve.</p>
+        </div>
+    </div>
+</div>
+
+    </section>
+ 
+    <footer class="footer">
+        <div class="footer-links-section">
+          <div class="footer-column">
+            <h5>About us</h5>
+            <ul>
+              <li><a href="#">Careers</a></li>
+              <li><a href="#">Media Centre</a></li>
+              <li><a href="#">Our planet</a></li>
+              <li><a href="#">Our people</a></li>
+              <li><a href="#">Our communities</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h5>Help</h5>
+            <ul>
+              <li><a href="#">Help and Contact</a></li>
+              <li><a href="#">Travel Updates</a></li>
+              <li><a href="#">Special Assistance</a></li>
+              <li><a href="#">FAQs</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h5>Book</h5>
+            <ul>
+              <li><a href="#">Book flights</a></li>
+              <li><a href="#">Travel services</a></li>
+              <li><a href="#">Transportation</a></li>
+              <li><a href="#">Planning your trip</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h5>Manage</h5>
+            <ul>
+              <li><a href="#">Check-in</a></li>
+              <li><a href="#">Manage your booking</a></li>
+              <li><a href="#">Chauffeur drive</a></li>
+              <li><a href="#">Flight status</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h5>Loyalty</h5>
+            <ul>
+              <li><a href="#">Log in to Emirates Skywards</a></li>
+              <li><a href="#">Join Emirates Skywards</a></li>
+              <li><a href="#">Our partners</a></li>
+              <li><a href="#">Register your company</a></li>
+            </ul>
+          </div>
+        </div>
+    
+        <hr />
+    
+        <div class="footer-subscription-section">
+          <div class="subscription">
+            <h4>Subscribe to our special offers</h4>
+            <p>Save with our latest fares and offers.</p>
+            <form>
+              <input type="email" placeholder="Email address">
+              <button type="submit">Subscribe</button>
+            </form>
+            <p>For details on how we use your information, please see our <a href="#">privacy policy</a>.</p>
+          </div>
+          <div class="social">
+            <h4>Connect with us</h4>
+            <p>Share your Emirates experience.</p>
+            <div class="social-icons">
+                <a href="https://facebook.com/" target="_blank"><img src="images/Facebook.png" alt="Facebook"></a>            
+                <a href="https://instagram.com/" target="_blank"><img src="/images/instagram.png" alt="Instagram"></a>
+                <a href="https://linkedin.com/" target="_blank"><img src="/images/linkedin_512_black.png" alt="linkedin"></a> 
+                <a href="https://twitter.com/" target="_blank"><img src="/images/twitter.png" alt="twitter"></a>            
+                <a href="https://youtube.com/" target="_blank"><img src="images/youtube-play.png" alt="youtube"></a>        
+            </div>
+          </div>
+        </div>
+    
+        <div class="footer-bottom">
+          <p>© 2024 The Emirates Group. All Rights Reserved.</p>
+          <ul>
+            <li><a href="#">Accessibility statement</a></li>
+            <li><a href="#">Privacy policy</a></li>
+            <li><a href="#">Terms and conditions</a></li>
+            <li><a href="#">Sitemap</a></li>
+          </ul>
+        </div>
+      </footer>
+      <div id="customPopup" class="popup-overlay">
+        <div class="popup">
+            <div class="popup-header">
+                <span class="popup-title">Notification</span>
+                <button class="close-btn" onclick="closePopup()">×</button>
+            </div>
+            <div class="popup-body">
+                <p id="popupMessage">This is a custom popup message!</p>
+            </div>
+            <div class="popup-footer">
+                <button class="btn" onclick="closePopup()">OK</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gyb6djjkP9Xk0c0BUzj7zP5Lg5QX0d3yX6g4y8f6g6i3k7h0Tg" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuCzAW65d+68e4Y2QzD+O4gcDOmq9NBpxpMRsFkwO7V8rkZktgF9/tmZniWZxFJe" crossorigin="anonymous"></script>
+
+</body>
+</html>
